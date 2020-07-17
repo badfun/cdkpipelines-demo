@@ -24,7 +24,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
         actionName: 'GitHub',
         output: sourceArtifact,
         // @ts-ignore
-        oauthToken: SecretValue.secretsManager('github-token'),
+        oauthToken: 'b5eeb0646c62764c180511ee74a2be006a3dc96a',
         owner: 'badfun',
         repo: 'cdkpipelines-demo',
         trigger: codepipeline_actions.GitHubTrigger.POLL,
