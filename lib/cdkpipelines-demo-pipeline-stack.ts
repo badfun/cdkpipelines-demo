@@ -14,7 +14,6 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     const sourceArtifact = new codepipeline.Artifact()
     const cloudAssemblyArtifact = new codepipeline.Artifact()
 
-    // @ts-ignore
     const pipeline = new CdkPipeline(this, 'Pipeline', {
       // The pipeline name
       pipelineName: 'MyServicePipeline',
@@ -24,7 +23,6 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
       sourceAction: new codepipeline_actions.GitHubSourceAction({
         actionName: 'GitHub',
         output: sourceArtifact,
-        // @ts-ignore
         oauthToken: SecretValue.secretsManager('github-token'),
         owner: 'badfun',
         repo: 'cdkpipelines-demo',
@@ -42,17 +40,14 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     })
 
     // This is where we add the application stages
-    // @ts-ignore
    const preprod = new CdkpipelinesDemoStage(this, 'PreProd', {
       env: { account: '271657195655', region: 'us-west-2' }
     })
 
-    // @ts-ignore
     const preprodStage = pipeline.addApplicationStage(preprod)
     preprodStage.addActions(new ShellScriptAction({
       actionName: 'TestService',
       useOutputs: {
-        // @ts-ignore
         ENDPOINT_URL: pipeline.stackOutput(preprod.urlOutput)
       },
       commands: [
@@ -60,7 +55,6 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
       ]
     }))
 
-    // @ts-ignore
     pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
       env: { account: '073129232396', region: 'us-west-2'}
     }))
