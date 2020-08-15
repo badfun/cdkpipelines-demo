@@ -43,20 +43,20 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     })
 
     // This is where we add the application stages
-  //  const preprod = new CdkpipelinesDemoStage(this, 'PreProd', {
-  //     env: { account: '271657195655', region: 'us-west-2' }
-  //   })
+   const preprod = new CdkpipelinesDemoStage(this, 'PreProd', {
+      env: { account: '271657195655', region: 'us-west-2' }
+    })
 
-  //   const preprodStage = pipeline.addApplicationStage(preprod)
-  //   preprodStage.addActions(new ShellScriptAction({
-  //     actionName: 'TestService',
-  //     useOutputs: {
-  //       ENDPOINT_URL: pipeline.stackOutput(preprod.urlOutput)
-  //     },
-  //     commands: [
-  //       'curl -Ssf $ENDPOINT_URL'
-  //     ]
-  //   }))
+    // const preprodStage = pipeline.addApplicationStage(preprod)
+    // preprodStage.addActions(new ShellScriptAction({
+    //   actionName: 'TestService',
+    //   useOutputs: {
+    //     ENDPOINT_URL: pipeline.stackOutput(preprod.urlOutput)
+    //   },
+    //   commands: [
+    //     'curl -Ssf $ENDPOINT_URL'
+    //   ]
+    // }))
 
     // pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
     //   env: { account: '073129232396', region: 'us-west-2'}
