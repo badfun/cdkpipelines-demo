@@ -33,7 +33,11 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
       synthAction: SimpleSynthAction.standardNpmSynth({
         sourceArtifact,
         cloudAssemblyArtifact,
+        
+        // experiment with installing node modules
+        installCommand: 'cd lib/lambda && npm install',
 
+        
         // We need a build step to compile the TypeScript Lambda
         buildCommand: 'npm run build',
       }),
