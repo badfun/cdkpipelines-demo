@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 {
   "name": "lambda",
   "version": "1.0.0",
@@ -10,25 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
   "dependencies": {
-    "stripe": "^8.86.0"
-  }
-}
-||||||| constructed merge base
-=======
-{
-  "name": "lambda",
-  "version": "1.0.0",
-  "description": "",
-  "main": "handler.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
     "@types/uuid": "^8.3.0"
   }
 }
->>>>>>> Stashed changes
