@@ -34,7 +34,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
         sourceArtifact,
         cloudAssemblyArtifact,
         
-        // experiment with installing node modules
+        // Install lambda dependencies
         installCommand: 'npm ci --prefix ../lib/lambda',
         
         // Build step to compile the TypeScript Lambda
