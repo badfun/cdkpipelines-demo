@@ -35,7 +35,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
         cloudAssemblyArtifact,
         
         // Install lambda dependency modules
-        installCommand: 'npm ci && cd lib/lambda && npm ci',
+        // installCommand: 'npm ci && cd lib/lambda && npm ci',
         
         // Build step to compile the TypeScript Lambda
         buildCommand: 'npm run build',
@@ -43,20 +43,28 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     })
 
     // This is where we add the application stages
-   const preprod = new CdkpipelinesDemoStage(this, 'preProd', {
-      env: { account: '271657195655', region: 'us-west-2' }
-    })
-
-    const preprodStage = pipeline.addApplicationStage(preprod)
-    preprodStage.addActions(new ShellScriptAction({
-      actionName: 'TestService',
-      useOutputs: {
-        ENDPOINT_URL: pipeline.stackOutput(preprod.urlOutput)
-      },
-      commands: [
-        'curl -Ssf $ENDPOINT_URL'
-      ]
+    pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Dev', {
+      env: {
+        account: '271657195655',
+        region: 'us-west-2'
+      }
     }))
+
+
+  //  const preprod = new CdkpipelinesDemoStage(this, 'preProd', {
+  //     env: { account: '271657195655', region: 'us-west-2' }
+  //   })
+
+  //   const preprodStage = pipeline.addApplicationStage(preprod)
+  //   preprodStage.addActions(new ShellScriptAction({
+  //     actionName: 'TestService',
+  //     useOutputs: {
+  //       ENDPOINT_URL: pipeline.stackOutput(preprod.urlOutput)
+  //     },
+  //     commands: [
+  //       'curl -Ssf $ENDPOINT_URL'
+  //     ]
+  //   }))
 
     // pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Prod', {
     //   env: { account: '073129232396', region: 'us-west-2'}
