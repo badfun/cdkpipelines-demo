@@ -38,7 +38,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
         // installCommand: 'cd lib/lambda && npm ci && cd ../../ && npm ci',
         
         // Build step to compile the TypeScript Lambda
-        buildCommand: 'npm run build',
+        buildCommand: 'cd lib/lambda && npm ci && cd ../../ && npm ci',
       }),
     })
 
